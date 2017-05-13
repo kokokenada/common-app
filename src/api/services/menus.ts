@@ -2,7 +2,6 @@
  * Created by kenono on 2016-04-16.
  */
 
-import { _ } from 'meteor-client';
 import { MenuItem, MenuItemDefintion } from "./menu-item";
 
 export class Menus {
@@ -17,7 +16,7 @@ export class Menus {
   }
 
   static getMenuFromId(id:string, menus:MenuItem[]=this.menus):MenuItem {
-    let item = _.find(menus, (menu:MenuItem)=>{
+    let item = menus.find( (menu:MenuItem) =>{
       return menu.id===id;
     });
     if (item) {

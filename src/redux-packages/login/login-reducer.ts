@@ -1,8 +1,7 @@
-import { User } from '../../api';
-
 import { IPayloadAction } from 'redux-package';
-import { LoginActions } from './login-actions.class';
+import { LoginActions } from './login-actions';
 import { ILoginState, ILoginActionPayload } from './index'
+import {LoginFunctions} from './login-functions';
 
 export const LOGIN_INITIAL_STATE:ILoginState = {
   neverLoggedIn: true,
@@ -27,7 +26,7 @@ export function loginReducer(
         loggingIn: false,
         loggedIn: true,
         userId: action.payload.user ? action.payload.user._id : (action.payload.userId ? action.payload.userId : state.userId),
-        displayName: User.getDisplayName(action.payload.user),  // OK because it's synchronous
+        displayName: LoginFunctions.getDisplayName(action.payload.user),  // OK because it's synchronous
         user: action.payload.user,
         errorMessage: ''
       };
@@ -51,11 +50,8 @@ export function loginReducer(
           errorMessage: action.error.message
         }
       );
-    case LoginActions.SAVE_USER_RESPONSE:   // Fall through
-    case LoginActions.WATCH_USER_FIRST_READ:
+    case LoginActions.SAVE_USER_RESPONSE:
       return Object.assign({}, state, {user: payload.user});
-    case LoginActions.WATCHED_USER_CHANGED:
-      return Object.assign({}, state, {user: payload.documentChange.newDocument});
     default:
       return state;
   }

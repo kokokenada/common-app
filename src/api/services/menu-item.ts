@@ -1,6 +1,5 @@
 
-import { User } from '../../api';
-import { _ } from 'meteor-client';
+import {IUser} from '../../redux-packages/login/login-types';
 
 export interface MenuItemDefintion {
   id:string;
@@ -32,15 +31,13 @@ export class MenuItem implements MenuItemDefintion {
   callback(m:MenuItem):void{};
   //menu:MenuItemDefintion;
   constructor(options:MenuItemDefintion) {
-    options.type = options.type || 'item';
-    options.roles = options.roles || ['user', 'admin'];
-    options.position = options.position || 0;
-    options.items = options.items || [];
-    _.extend(this, options);
-    //this.menu=options;
+    this.type = options.type || 'item';
+    this.roles = options.roles || ['user', 'admin'];
+    this.position = options.position || 0;
+    this.items = options.items || [];
   }
 
-  shouldRender (user:User) {
+  shouldRender (user:IUser) {
 //     console.log('should render')
 //     console.log(user)
 //    console.log(this)

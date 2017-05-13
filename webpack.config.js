@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const isProdBuild = process.env.NODE_ENV === 'PRODUCTION';
 const webpackRxjsExternals = require( 'webpack-rxjs-externals');
-console.log(webpackRxjsExternals())
+
 module.exports = {
 
   entry: [
@@ -24,8 +24,9 @@ module.exports = {
     {'rxjs': 'Observable'},
     'redux-observable',
     'redux',
-    {'redux-package': 'ReduxPackage'},
-    'meteor-client'
+    'redux-package',
+    'typed-immutable',
+    'typed-immutable-record'
   ],
 /*
  ,
@@ -42,10 +43,9 @@ module.exports = {
     loaders: [
 
       {
-        test: /\.tsx?$/,
+        test: /\.ts$/,
         loader: 'awesome-typescript-loader',
         exclude: [/node_modules/]
-//        include: ['src/*.ts']
       }
     ]
   },
@@ -68,11 +68,3 @@ module.exports = {
   ]
 };
 
-
-/*
- new CopyWebpackPlugin([ // An attempt at working around problem
- {from: 'src/action.interface.ts'},
- {from: 'src/state.interface.ts'}
- ])
-
- */
