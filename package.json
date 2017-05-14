@@ -1,6 +1,6 @@
 {
   "name": "common-app",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/common-app.js",
   "typings": "./dist/index.d.ts",

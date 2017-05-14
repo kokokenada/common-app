@@ -8,14 +8,14 @@ export class FeatureToggleActions {
   static FEATURE_TOGGLE_INITIALIZE = 'FEATURE_TOGGLE_INITIALIZE';
 
 
-  toggleFeatureSetting(target) {
+  static toggleFeatureSetting(target) {
     ReduxPackageCombiner.dispatch({
       type: FeatureToggleActions.TOGGLE_FEATURE,
       payload: ToggleUtil.stripIds(target),
     });
   }
 
-  initialize(configSet: IFeatureToggleConfigSet) {
+  static initialize(configSet: IFeatureToggleConfigSet) {
     ReduxPackageCombiner.dispatch({
       type: FeatureToggleActions.FEATURE_TOGGLE_INITIALIZE,
       payload: ToggleUtil.stripIds(configSet),

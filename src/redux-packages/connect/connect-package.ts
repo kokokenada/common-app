@@ -4,9 +4,10 @@ import { ConnectAsync } from "./connect-async.class";
 import { ConnectActions } from "./connect-actions.class";
 import { IConnectService } from './connect-service-interface';
 import { IConnectState } from './connect-types';
+export const CONNECT_PACKAGE_NAME = 'commonAppConnection';
 
 export class ConnectPackage extends ReduxPackage<IAppState, IPayloadAction>  {
-  reducers=[{name:'commonAppConnection', reducer:connectReducer}];
+  reducers=[{name: CONNECT_PACKAGE_NAME, reducer:connectReducer}];
   actions = ConnectActions;
   constructor(connectService:IConnectService) {
     super();

@@ -31,6 +31,7 @@ export class MenuItem implements MenuItemDefintion {
   callback(m:MenuItem):void{};
   //menu:MenuItemDefintion;
   constructor(options:MenuItemDefintion) {
+    Object.assign(this, options);
     this.type = options.type || 'item';
     this.roles = options.roles || ['user', 'admin'];
     this.position = options.position || 0;

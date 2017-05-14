@@ -12,8 +12,7 @@ export class ToggleRouter {
   private toggleRecord: IToggleRecord;
 
   constructor(
-    private dispacher:IDispatcher<IAppState>,
-    private featureToggleActions: FeatureToggleActions
+    private dispacher:IDispatcher<IAppState>
   ) {
     this.toggleConfig$ = <Observable<IToggleRecord>>dispacher.select('featureToggleReducer');
     this.toggleConfig$.subscribe((toggleRecord: IToggleRecord) => {
@@ -28,7 +27,7 @@ export class ToggleRouter {
   }
 
   setFeatureState(featureState: Object): void {
-    this.featureToggleActions.toggleFeatureSetting(featureState);
+    FeatureToggleActions.toggleFeatureSetting(featureState);
   }
 
   getFeatureState(toggleId) {

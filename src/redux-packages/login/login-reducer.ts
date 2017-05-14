@@ -1,9 +1,9 @@
-import { IPayloadAction } from 'redux-package';
-import { LoginActions } from './login-actions';
-import { ILoginState, ILoginActionPayload } from './index'
+import {IPayloadAction} from 'redux-package';
+import {LoginActions} from './login-actions';
+import {ILoginState, ILoginActionPayload} from './index'
 import {LoginFunctions} from './login-functions';
 
-export const LOGIN_INITIAL_STATE:ILoginState = {
+export const LOGIN_INITIAL_STATE: ILoginState = {
   neverLoggedIn: true,
   loggedIn: false,
   loggingIn: false,
@@ -13,16 +13,15 @@ export const LOGIN_INITIAL_STATE:ILoginState = {
   errorMessage: ''
 };
 
-export function loginReducer(
-  state: ILoginState = LOGIN_INITIAL_STATE,
-  action: IPayloadAction): ILoginState {
-  let payload:ILoginActionPayload = action.payload;
+export function loginReducer(state: ILoginState = LOGIN_INITIAL_STATE,
+                             action: IPayloadAction): ILoginState {
+  let payload: ILoginActionPayload = action.payload;
   switch (action.type) {
     case LoginActions.LOGIN_REQUEST:
       return Object.assign({}, state, {loggingIn: true});
     case LoginActions.LOGGED_IN:
       return {
-        neverLoggedIn:false,
+        neverLoggedIn: false,
         loggingIn: false,
         loggedIn: true,
         userId: action.payload.user ? action.payload.user._id : (action.payload.userId ? action.payload.userId : state.userId),

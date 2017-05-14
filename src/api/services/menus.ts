@@ -5,17 +5,17 @@
 import { MenuItem, MenuItemDefintion } from "./menu-item";
 
 export class Menus {
-  private static menus:MenuItem[] = [];
-  private static savedForLater = [];
+  private _menus:MenuItem[] = [];
+  private savedForLater = [];
 
   constructor() {
   }
 
-  static getMenus() {
-    return this.menus;
+  getMenus():MenuItem[] {
+    return this._menus;
   }
 
-  static getMenuFromId(id:string, menus:MenuItem[]=this.menus):MenuItem {
+  getMenuFromId(id:string, menus:MenuItem[]=this._menus):MenuItem {
     let item = menus.find( (menu:MenuItem) =>{
       return menu.id===id;
     });
@@ -33,7 +33,7 @@ export class Menus {
   }
 
   // Validate menu existance
-  static validateMenuExistance(menuId:string):MenuItem {
+   validateMenuExistance(menuId:string):MenuItem {
     if (menuId && menuId.length) {
       let menuItem:MenuItem = this.getMenuFromId(menuId);
       if (menuItem) {
@@ -48,7 +48,7 @@ export class Menus {
   };
 
   // Get the menu object by menu id
-  static getMenu = function (menuId:string):MenuItem {
+  getMenu = function (menuId:string):MenuItem {
     // Validate that the menu exists
     let menuItem:MenuItem = this.validateMenuExistance(menuId);
 
@@ -57,9 +57,9 @@ export class Menus {
   };
 
   // Add new menu object by menu id
-  static addMenu(options:MenuItemDefintion):MenuItem {
+  addMenu(options:MenuItemDefintion):MenuItem {
     // Create the new menu
-    this.menus.push(new MenuItem(options));
+    this._menus.push(new MenuItem(options));
     this.trySavedForLater();
 
     // Return the menu object
@@ -67,7 +67,7 @@ export class Menus {
   };
 
   // Remove existing menu object by menu id
-  static removeMenu(menuId:string):void {
+  removeMenu(menuId:string):void {
     // Validate that the menu exists
     this.validateMenuExistance(menuId);
 
@@ -103,14 +103,12 @@ export class Menus {
     return this.getMenuFromId(menuId);
   };
 */
-  private static saveForLater(parentId:string, options:MenuItemDefintion):void {
+  private saveForLater(parentId:string, options:MenuItemDefintion):void {
     this.savedForLater.push({parentId: parentId, options: options});
   };
 
   // Add submenu item object
-  static addSubMenuItem(parentId:string, options:MenuItemDefintion):MenuItem {
-
-
+  addSubMenuItem(parentId:string, options:MenuItemDefintion):MenuItem {
     // Search for menu item
     let parent:MenuItem = this.getMenuFromId(parentId);
     if (parent) {
@@ -128,7 +126,7 @@ export class Menus {
     }
   };
 
-  private static  trySavedForLater():void {
+  private  trySavedForLater():void {
     let tryList = this.savedForLater;
     this.savedForLater = [];
     for (let i = 0; i < tryList.length; i++) {
