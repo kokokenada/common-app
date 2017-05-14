@@ -44,6 +44,8 @@ export interface ILoginState {
   displayName: string;
   user:IUser;
   errorMessage:string;
+  autoLogin?: boolean;
+  defaultAvatar?: string;
 }
 
 export interface ILoginActionPayload {
@@ -53,6 +55,7 @@ export interface ILoginActionPayload {
   documentChange?:IDocumentChange<IUser>,
   autoLogin?: boolean
   error?: any
+  defaultAvatar?: string;
 }
 
 export let webpacksucks3=''; // Otherwise this file does not get included in dist by webpack

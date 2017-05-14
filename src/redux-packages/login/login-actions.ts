@@ -19,6 +19,10 @@ export class LoginActions {
 
   static WATCH_USER_AUTO_LOGIN = LoginActions.prefix + 'WATCH_USER_AUTO_LOGIN';
 
+  static WATCH_CURRENT_USER = LoginActions.prefix + 'WATCH_CURRENT_USER';
+  static CURRENT_USER_UPDATED = LoginActions.prefix + 'CURRENT_USER_UPDATED';
+
+  static SET_DEFAULT_AVATAR = LoginActions.prefix + 'SET_DEFAULT_AVATAR';
 
   static login(credentials:Credentials):void {
     ReduxPackageCombiner.dispatch({ type: LoginActions.LOGIN_REQUEST, payload: {credentials: credentials}});
@@ -40,8 +44,16 @@ export class LoginActions {
     ReduxPackageCombiner.dispatch({type: LoginActions.SAVE_USER_REQUEST, payload: {user: user}});
   }
 
-  static watchUser() : void {
+  static watchForAutoLogin() : void {
     ReduxPackageCombiner.dispatch({type: LoginActions.WATCH_USER_AUTO_LOGIN});
+  }
+
+  static watchCurrentUser() : void {
+    ReduxPackageCombiner.dispatch({type: LoginActions.WATCH_CURRENT_USER});
+  }
+
+  static currentUserChangeFactory(user:IUser):IPayloadAction {
+    return {type: LoginActions.CURRENT_USER_UPDATED, payload: {user: user}};
   }
 
   static saveUserResponseFactory(user:IUser):IPayloadAction {
@@ -59,4 +71,9 @@ export class LoginActions {
   static errorNotification(error: IActionError ) {
     ReduxPackageCombiner.dispatch({type: LoginActions.LOGIN_ERROR, error});
   }
+
+  static setDefaultAvatar(url: string) {
+    ReduxPackageCombiner.dispatch({type: LoginActions.SET_DEFAULT_AVATAR, payload: {defaultAvatar: url}});
+  }
+
 }

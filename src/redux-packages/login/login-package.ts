@@ -10,7 +10,7 @@ export const LOGIN_PACKAGE_NAME = 'commonAppLoginStatus';
 export class LoginPackage extends ReduxPackage<IAppState, IPayloadAction>  {
   reducers=[{name:LOGIN_PACKAGE_NAME, reducer:loginReducer}];
   action = LoginActions;
-  constructor(loginService: ILoginService) {
+  constructor(private loginService: ILoginService) {
     super();
     const loginAsync = new LoginAsync(loginService);
     this.epics.push(
@@ -19,7 +19,13 @@ export class LoginPackage extends ReduxPackage<IAppState, IPayloadAction>  {
       loginAsync.tempUser,
       loginAsync.logout,
       loginAsync.watchForAutoLogin,
+      loginAsync.watchCurrentUser,
       loginAsync.saveUser
     );
+  }
+  initialize() {
+    LoginActions.watchForAutoLogin(); // for auto login
+    LoginActions.watchCurrentUser(); // changes to current user
+    LoginActions.setDefaultAvatar(this.loginService.defaultAvatarUrl());
   }
 }

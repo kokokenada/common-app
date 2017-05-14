@@ -26,9 +26,6 @@ export class LoginAsync {
           .fromPromise(
             this.loginService.login(payload.credentials)
           )
-          .do((payloadAction: IPayloadAction) => {
-            LoginActions.watchUser();
-          })
           .catch(error => Observable.of(error));
       });
   };
@@ -41,9 +38,6 @@ export class LoginAsync {
           .fromPromise(
             this.loginService.register(payload.credentials)
           )
-          .do((payloadAction: IPayloadAction) => {
-            LoginActions.watchUser();
-          })
           .catch(error => Observable.of(error));
       });
   };
@@ -57,9 +51,6 @@ export class LoginAsync {
           .fromPromise(
             this.loginService.createTempUser()
           )
-          .do((payloadAction: IPayloadAction) => {
-            LoginActions.watchUser();
-          })
           .catch(error => Observable.of(error));
       });
   };
@@ -87,7 +78,7 @@ export class LoginAsync {
   };
 
   /**
-   * Start watching the currently logged in user and emits login event when it changes
+   * Start and emits login event if user is automatically logged in
    * @param action$
    * @param store
    * @returns {Observable<IPayloadAction>}
@@ -96,6 +87,19 @@ export class LoginAsync {
     return action$.filter(({type}) => type === LoginActions.WATCH_USER_AUTO_LOGIN)
       .flatMap(({payload}) => {
         return this.loginService.watchForAutoLogin();
+      });
+  };
+
+  /**
+   * Start watching the currently logged in user and emits change event when it changes
+   * @param action$
+   * @param store
+   * @returns {Observable<IPayloadAction>}
+   */
+  watchCurrentUser = (action$: Observable<IPayloadAction>, store: Store<IAppState>): Observable<IPayloadAction> => {
+    return action$.filter(({type}) => type === LoginActions.WATCH_CURRENT_USER)
+      .flatMap(({payload}) => {
+        return this.loginService.watchCurrentUser();
       });
   };
 }

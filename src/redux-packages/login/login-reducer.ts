@@ -27,7 +27,9 @@ export function loginReducer(state: ILoginState = LOGIN_INITIAL_STATE,
         userId: action.payload.user ? action.payload.user._id : (action.payload.userId ? action.payload.userId : state.userId),
         displayName: LoginFunctions.getDisplayName(action.payload.user),  // OK because it's synchronous
         user: action.payload.user,
-        errorMessage: ''
+        errorMessage: '',
+        autoLogin: payload.autoLogin,
+        defaultAvatar: state.defaultAvatar
       };
     case LoginActions.LOGGED_OUT:
       return Object.assign({}, state, {
@@ -36,7 +38,8 @@ export function loginReducer(state: ILoginState = LOGIN_INITIAL_STATE,
         userId: null,
         displayName: null,
         user: null,
-        errorMessage: ''
+        errorMessage: '',
+        defaultAvatar: state.defaultAvatar
       });
     case LoginActions.LOGIN_ERROR:
       return Object.assign({}, state,
@@ -46,11 +49,20 @@ export function loginReducer(state: ILoginState = LOGIN_INITIAL_STATE,
           userId: '',
           displayName: '',
           user: null,
-          errorMessage: action.error.message
+          errorMessage: action.error.message,
+          defaultAvatar: state.defaultAvatar
         }
       );
     case LoginActions.SAVE_USER_RESPONSE:
-      return Object.assign({}, state, {user: payload.user});
+    case LoginActions.CURRENT_USER_UPDATED:
+      return Object.assign({},
+        state,
+        {
+          user: payload.user,
+          defaultAvatar: state.defaultAvatar
+        });
+    case LoginActions.SET_DEFAULT_AVATAR:
+      return {...state, defaultAvatar: payload.defaultAvatar};
     default:
       return state;
   }
