@@ -19,4 +19,4 @@ export interface IFeatureToggleConfigSet {
   [propName: string]: IFeatureToggleConfig;
 }
 
-export let webpacksucks2=''; // Otherwise this file does not get included in dist by webpack
+export let webPackSticky2=''; // Otherwise this file does not get included in dist by webpack

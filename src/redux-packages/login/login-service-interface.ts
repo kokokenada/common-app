@@ -16,4 +16,4 @@ export interface ILoginService {
   defaultAvatarUrl(): string;
 }
 
-export let webpacksucks4=''; // Otherwise this file does not get included in dist by webpack
+export let webPackSticky4=''; // Otherwise this file does not get included in dist by webpack

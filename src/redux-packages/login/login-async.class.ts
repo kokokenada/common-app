@@ -9,18 +9,17 @@ import 'rxjs/add/operator/map';
 
 import { IAppState, IPayloadAction } from 'redux-package';
 
-import {LoginActions} from "./login-actions";
 import {ILoginService} from './login-service-interface';
+import {LoginActionsStrings} from './login-actions-strings';
 
 export class LoginAsync {
 
   constructor(private loginService:ILoginService) {
-
   }
 
   login = (action$: Observable<IPayloadAction>) => {
     return action$
-      .filter(({type}) => type === LoginActions.LOGIN_REQUEST)
+      .filter(({type}) => type === LoginActionsStrings.LOGIN_REQUEST)
       .flatMap(({payload}) => {
         return Observable
           .fromPromise(
@@ -32,7 +31,7 @@ export class LoginAsync {
 
   register = (action$: Observable<IPayloadAction>) => {
     return action$
-      .filter(({type}) => type === LoginActions.REGISTRATION_REQUEST)
+      .filter(({type}) => type === LoginActionsStrings.REGISTRATION_REQUEST)
       .flatMap(({payload}) => {
         return Observable
           .fromPromise(
@@ -45,7 +44,7 @@ export class LoginAsync {
 
   tempUser = (action$: Observable<IPayloadAction>) => {
     return action$
-      .filter(({type}) => type === LoginActions.TEMP_USER_REQUEST)
+      .filter(({type}) => type === LoginActionsStrings.TEMP_USER_REQUEST)
       .flatMap(({payload}) => {
         return Observable
           .fromPromise(
@@ -57,7 +56,7 @@ export class LoginAsync {
 
 
   logout = (action$: Observable<IPayloadAction>) => {
-    return action$.filter(({type}) => type === LoginActions.LOGOUT_REQUEST)
+    return action$.filter(({type}) => type === LoginActionsStrings.LOGOUT_REQUEST)
       .flatMap(({payload}) => {
         return Observable.fromPromise(
           this.loginService.logOut()
@@ -67,7 +66,7 @@ export class LoginAsync {
   };
 
   saveUser = (action$: Observable<IPayloadAction>) => {
-    return action$.filter(({type}) => type === LoginActions.SAVE_USER_REQUEST)
+    return action$.filter(({type}) => type === LoginActionsStrings.SAVE_USER_REQUEST)
       .flatMap(({payload}) => {
         return Observable.fromPromise(
           this.loginService.saveUser(payload.user)
@@ -84,7 +83,7 @@ export class LoginAsync {
    * @returns {Observable<IPayloadAction>}
    */
   watchForAutoLogin = (action$: Observable<IPayloadAction>, store: Store<IAppState>): Observable<IPayloadAction> => {
-    return action$.filter(({type}) => type === LoginActions.WATCH_USER_AUTO_LOGIN)
+    return action$.filter(({type}) => type === LoginActionsStrings.WATCH_USER_AUTO_LOGIN)
       .flatMap(({payload}) => {
         return this.loginService.watchForAutoLogin();
       });
@@ -97,7 +96,7 @@ export class LoginAsync {
    * @returns {Observable<IPayloadAction>}
    */
   watchCurrentUser = (action$: Observable<IPayloadAction>, store: Store<IAppState>): Observable<IPayloadAction> => {
-    return action$.filter(({type}) => type === LoginActions.WATCH_CURRENT_USER)
+    return action$.filter(({type}) => type === LoginActionsStrings.WATCH_CURRENT_USER)
       .flatMap(({payload}) => {
         return this.loginService.watchCurrentUser();
       });

@@ -1,7 +1,7 @@
 import { ReduxPackage, IAppState, IPayloadAction} from 'redux-package';
 import { connectReducer } from "./connect-reducer";
-import { ConnectAsync } from "./connect-async.class";
-import { ConnectActions } from "./connect-actions.class";
+import { ConnectAsync } from "./connect-async";
+import { ConnectActions } from "./connect-actions";
 import { IConnectService } from './connect-service-interface';
 import { IConnectState } from './connect-types';
 export const CONNECT_PACKAGE_NAME = 'commonAppConnection';

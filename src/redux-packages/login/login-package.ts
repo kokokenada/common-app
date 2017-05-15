@@ -4,7 +4,8 @@ import { loginReducer } from "./login-reducer";
 import { LoginAsync } from "./login-async.class";
 import { LoginActions } from "./login-actions";
 import { ILoginState } from './index';
-import {ILoginService} from './login-service-interface';
+import { ILoginService } from './login-service-interface';
+import { LoginActionsPrivate } from './login-actions-private';
 export const LOGIN_PACKAGE_NAME = 'commonAppLoginStatus';
 
 export class LoginPackage extends ReduxPackage<IAppState, IPayloadAction>  {
@@ -24,8 +25,8 @@ export class LoginPackage extends ReduxPackage<IAppState, IPayloadAction>  {
     );
   }
   initialize() {
-    LoginActions.watchForAutoLogin(); // for auto login
-    LoginActions.watchCurrentUser(); // changes to current user
-    LoginActions.setDefaultAvatar(this.loginService.defaultAvatarUrl());
+    LoginActionsPrivate.watchForAutoLogin(); // for auto login
+    LoginActionsPrivate.watchCurrentUser(); // changes to current user
+    LoginActionsPrivate.setDefaultAvatar(this.loginService.defaultAvatarUrl());
   }
 }

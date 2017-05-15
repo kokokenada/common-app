@@ -6,4 +6,4 @@ export  interface IConnectService {
   reconnect(): void;
   disconnect(): void;
 }
-export let webpacksucks=''; // Otherwise this file does not get included in dist by webpack
+export let webPackSticky=''; // Otherwise this file does not get included in dist by webpack

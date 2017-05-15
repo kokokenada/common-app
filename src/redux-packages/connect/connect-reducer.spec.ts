@@ -1,6 +1,6 @@
 import { connectReducer } from './connect-reducer';
-import { INITIAL_STATE_CONNECT, IConnectActionPayload }  from './connect-types';
-import {ConnectActions} from './connect-actions.class';
+import { INITIAL_STATE_CONNECT, IConnectActionPayload }  from './connect-types-private';
+import { ConnectActionsStrings } from './connect-actions-strings';
 
 describe('connect reducer', () => {
   it('should return the initial state', () => {
@@ -15,7 +15,7 @@ describe('connect reducer', () => {
     let payload: IConnectActionPayload = {serverURL: 'http://test'};
     expect(
       connectReducer(null, {
-        type: ConnectActions.CONNECT_SUCCESS,
+        type: ConnectActionsStrings.CONNECT_SUCCESS,
         payload
       })
     ).toEqual(

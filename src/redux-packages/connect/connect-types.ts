@@ -6,15 +6,4 @@ export interface IConnectState {
   serverURL: string;
 }
 
-export interface IConnectActionPayload {
-  serverURL: string;
-}
-
-export const INITIAL_STATE_CONNECT = {
-  connected: false,
-  connecting: false,
-  retryCount: 0,
-  serverURL: ""
-};
-
-
+export let webPackSticky6=''; // Otherwise this file does not get included in dist by webpack

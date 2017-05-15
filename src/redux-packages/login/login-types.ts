@@ -1,5 +1,4 @@
 
-
 import { Credentials } from "../../api/services/credentials";
 import { IDocumentChange } from "../../api";
 
@@ -58,4 +57,4 @@ export interface ILoginActionPayload {
   defaultAvatar?: string;
 }
 
-export let webpacksucks3=''; // Otherwise this file does not get included in dist by webpack
+export let webPackSticky3=''; // Otherwise this file does not get included in dist by webpack

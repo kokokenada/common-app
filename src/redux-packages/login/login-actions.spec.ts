@@ -1,6 +1,7 @@
 import {ReduxPackageCombiner} from 'redux-package';
 import {LoginActions} from './login-actions';
 import {Credentials} from '../../api/services/credentials';
+import {LoginActionsStrings} from './login-actions-strings';
 
 describe('login-actions', () => {
   const watched = jest.fn();
@@ -15,7 +16,7 @@ describe('login-actions', () => {
         "payload": {
           "credentials": {"email": "b", "password": "c", "username": "a"}
         },
-        "type": LoginActions.LOGIN_REQUEST
+        "type": LoginActionsStrings.LOGIN_REQUEST
       }
     );
   });

@@ -6,6 +6,7 @@ import { IAppState, IDispatcher } from 'redux-package';
 import { FeatureToggleActions } from './feature-toggle-actions';
 import { IToggleRecord, IFeatureToggleConfigSet } from './feature-toggle-types';
 import { ToggleUtil, ParseResult } from './feature-toggle-util';
+import { FEATURE_TOGGLE_PACKAGE_NAME } from './feature-toggle-package';
 
 export class ToggleRouter {
   private toggleConfig$: Observable<IToggleRecord>;
@@ -14,7 +15,7 @@ export class ToggleRouter {
   constructor(
     private dispacher:IDispatcher<IAppState>
   ) {
-    this.toggleConfig$ = <Observable<IToggleRecord>>dispacher.select('featureToggleReducer');
+    this.toggleConfig$ = <Observable<IToggleRecord>>dispacher.select(FEATURE_TOGGLE_PACKAGE_NAME);
     this.toggleConfig$.subscribe((toggleRecord: IToggleRecord) => {
       this.toggleRecord = toggleRecord;
     });

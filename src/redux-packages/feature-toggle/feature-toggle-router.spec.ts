@@ -29,16 +29,15 @@ describe('toggle router', () => {
 //    const watched = (newValue) => {};
     const watched = jest.fn()
     beforeEach(() => {
-      let featureToggleActions: FeatureToggleActions = new FeatureToggleActions();
       let featureToggleModule: FeatureTogglePackage = new FeatureTogglePackage();
       ReduxPackageCombiner.reset();
       ReduxPackageCombiner.configure([featureToggleModule], null);
-      toggleRouter = new ToggleRouter(ReduxPackageCombiner.getDispatcher(), featureToggleActions);
+      toggleRouter = new ToggleRouter(ReduxPackageCombiner.getDispatcher());
 
       const configs = {
         'cta': {setting: 'contact'}
       };
-      featureToggleActions.initialize(configs);
+      FeatureToggleActions.initialize(configs);
 
       toggleSetting$ = toggleRouter.watch('cta');
       toggleSetting$.subscribe((newValue) => {

@@ -1,9 +1,10 @@
 
 import { IPayloadAction } from 'redux-package';
-import { ConnectActions } from './connect-actions.class';
-import {IConnectState, IConnectActionPayload, INITIAL_STATE_CONNECT} from './connect-types'
-import {LoginActions} from '../login/login-actions';
-
+import { ConnectActions } from './connect-actions';
+import { IConnectState } from './connect-types'
+import { IConnectActionPayload, INITIAL_STATE_CONNECT} from './connect-types-private'
+import { LoginActions} from '../login/login-actions';
+import { ConnectActionsStrings } from './connect-actions-strings';
 
 export function connectReducer(
   state: IConnectState = INITIAL_STATE_CONNECT,
@@ -11,7 +12,7 @@ export function connectReducer(
 
   let payload:IConnectActionPayload = action.payload;
   switch (action.type) {
-    case ConnectActions.CONNECT_START:
+    case ConnectActionsStrings.CONNECT_START:
       return {...state, connecting: true};
     case ConnectActions.CONNECT_SUCCESS:
       return {...state,
@@ -20,11 +21,11 @@ export function connectReducer(
         serverURL: action.payload.serverURL,
         retryCount: 0
       };
-    case ConnectActions.CONNECT_ATTEMPT:
+    case ConnectActionsStrings.CONNECT_ATTEMPT:
       return {...state, retryCount: state.retryCount + 1, serverURL: payload.serverURL};
     case ConnectActions.CONNECT_FAIL:
       return {...state, connected: false};
-    case ConnectActions.CONNECT_SET_SERVER:
+    case ConnectActionsStrings.CONNECT_SET_SERVER:
       return {...state, connected: false};
     case LoginActions.LOGGED_IN:
       return {...state, connected: true};
