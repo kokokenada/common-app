@@ -1,4 +1,5 @@
 import { IActionError } from 'redux-package';
+import {webPackSticky} from '../connect/connect-service-interface';
 
 export interface IException {
   code: string;
@@ -21,3 +22,4 @@ export interface IExceptionLogger {
   callback(exception: IException);
 }
 
+export let webPackSticky7 = '';
