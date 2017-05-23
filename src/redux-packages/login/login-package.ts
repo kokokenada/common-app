@@ -28,10 +28,7 @@ export class LoginPackage extends ReduxPackage<IAppState, IPayloadAction>  {
   initialize() {
     LoginActionsPrivate.watchForAutoLogin(); // for auto login
     LoginActionsPrivate.watchCurrentUser(); // changes to current user
-    LoginActionsPrivate.setDefaultAvatar(this.loginService.defaultAvatarUrl());
     ReduxPackageCombiner.select(LOGIN_PACKAGE_NAME).subscribe( (newState: ILoginState) => {
-//      console.log('LoginState.lastLoginState subscription')
-//      console.log(newState)
       LoginPackage.lastLoginState = newState;
     });
   }

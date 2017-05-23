@@ -44,7 +44,6 @@ export interface ILoginState {
   user:IUser;
   errorMessage:string;
   autoLogin?: boolean;
-  defaultAvatar?: string;
 }
 
 export interface ILoginActionPayload {

@@ -48,9 +48,4 @@ export class LoginActions {
   static errorNotification(error: IActionError ) {
     ReduxPackageCombiner.dispatch({type: LoginActions.LOGIN_ERROR, error});
   }
-
-  static setDefaultAvatar(url: string) {
-    ReduxPackageCombiner.dispatch({type: LoginActionsStrings.SET_DEFAULT_AVATAR, payload: {defaultAvatar: url}});
-  }
-
 }

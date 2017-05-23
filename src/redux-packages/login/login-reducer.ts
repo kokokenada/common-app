@@ -1,8 +1,6 @@
 import {IPayloadAction} from 'redux-package';
-import {LoginActions} from './login-actions';
 import {ILoginState, ILoginActionPayload} from './index'
 import {LoginFunctions} from './login-functions';
-import {LoginActionsPrivate} from './login-actions-private';
 import {LoginActionsStrings} from './login-actions-strings';
 
 export const LOGIN_INITIAL_STATE: ILoginState = {
@@ -30,8 +28,7 @@ export function loginReducer(state: ILoginState = LOGIN_INITIAL_STATE,
         displayName: LoginFunctions.getDisplayName(action.payload.user),  // OK because it's synchronous
         user: action.payload.user,
         errorMessage: '',
-        autoLogin: payload.autoLogin,
-        defaultAvatar: state.defaultAvatar
+        autoLogin: payload.autoLogin
       };
     case LoginActionsStrings.LOGGED_OUT:
       return Object.assign({}, state, {
@@ -40,8 +37,7 @@ export function loginReducer(state: ILoginState = LOGIN_INITIAL_STATE,
         userId: null,
         displayName: null,
         user: null,
-        errorMessage: '',
-        defaultAvatar: state.defaultAvatar
+        errorMessage: ''
       });
     case LoginActionsStrings.LOGIN_ERROR:
       return Object.assign({}, state,
@@ -52,7 +48,6 @@ export function loginReducer(state: ILoginState = LOGIN_INITIAL_STATE,
           displayName: '',
           user: null,
           errorMessage: action.error.message,
-          defaultAvatar: state.defaultAvatar
         }
       );
     case LoginActionsStrings.SAVE_USER_RESPONSE:
@@ -60,11 +55,8 @@ export function loginReducer(state: ILoginState = LOGIN_INITIAL_STATE,
       return Object.assign({},
         state,
         {
-          user: payload.user,
-          defaultAvatar: state.defaultAvatar
+          user: payload.user
         });
-    case LoginActionsStrings.SET_DEFAULT_AVATAR:
-      return {...state, defaultAvatar: payload.defaultAvatar};
     default:
       return state;
   }

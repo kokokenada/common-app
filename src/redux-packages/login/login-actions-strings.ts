@@ -12,5 +12,4 @@ export class LoginActionsStrings {
   static SAVE_USER_RESPONSE = LoginActionsStrings.prefix + 'SAVE_USER_RESP';
   static WATCH_USER_AUTO_LOGIN = LoginActionsStrings.prefix + 'WATCH_USER_AUTO_LOGIN';
   static WATCH_CURRENT_USER = LoginActionsStrings.prefix + 'WATCH_CURRENT_USER';
-  static SET_DEFAULT_AVATAR = LoginActionsStrings.prefix + 'SET_DEFAULT_AVATAR';
 }
