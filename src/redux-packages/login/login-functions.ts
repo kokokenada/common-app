@@ -24,6 +24,9 @@ export class LoginFunctions {
       file = profile['avatar-medium'];
     }
     if (!file) {
+      file = profile['avatar-original'];
+    }
+    if (!file) {
       return defaultUrl;
     }
     return file;
