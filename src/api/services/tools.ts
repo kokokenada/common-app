@@ -6,7 +6,7 @@ export class Tools {
   };
 
   static deepCopy(source) {
-    return Object.assign({}, source);
+    return JSON.parse(JSON.stringify(source));
   };
 
   static stringify = function (obj, replacer = null, spaces = 2, cycleReplacer=null) {
