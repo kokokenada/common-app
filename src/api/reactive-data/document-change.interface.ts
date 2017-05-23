@@ -14,3 +14,5 @@ export interface IDocumentChange<T> {
   before?:string
   fromIndex?:number
 }
+
+export let webpacksticky1='';
